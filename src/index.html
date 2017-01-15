@@ -3,13 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Acme Inc.</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
 </head>
-<body>
-<div id="root" ng-app="acmeInc">
+<body ng-app="acmeInc">
 
-<input type="text" ng-model="searchKey"/> &nbsp; {{searchKey}}
+<div id="root" ng-controller="homeController as vm">
+
+    <div class="container">
+        <br>
+        <input class="form-control" type="text" ng-model="searchKey"/>
+        <br/>
+        <div class="text-center">
+            Search result for: <strong> {{searchKey}}</strong>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" ng-click="vm.toggleImage()">
+                {{vm.showImage ? "hide":"show"}} image
+            </label>
+        </div>
+        <div>
+            <button class="btn btn-sm" ng-click="vm.fetchData()">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <table class="table table-condensed table-striped">
+            <thead class="bg-primary">
+            <tr>
+                <th ng-if="vm.showImage">Image</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Release Date</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="product in vm.products">
+                <td ng-if="vm.showImage">
+                    <img style="width: 100px" ng-src="{{product.image}}"/>
+                </td>
+                <td>{{product.productName}}</td>
+                <td>{{product.productCode}}</td>
+                <td>{{product.releaseDate}}</td>
+                <td>{{product.price}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 </div>
+
 </body>
 <script src="dist/bundle.js" type="text/javascript"></script>
 </html>
