@@ -2,22 +2,36 @@
 
     var app = angular.module('acmeInc');
 
-    app.controller('productController', ['productService', homeController]);
+    app.controller('productController', ['productService', '$state','selectedProduct', productController]);
 
-    function homeController(productService) {
+    function productController(productService, $state,selectedProduct) {
+
         var self = this;
 
         self.products = [];
+        self.selectedProduct = selectedProduct;
         self.showImage = false;
 
-        self.fetchData = function () {
+        self.getProducts = function () {
             self.resetState();
-            console.log("fetching product data", new Date());
             productService.getProducts()
                 .then(function (response) {
                     self.products = response.data;
                 });
         };
+        //
+        //self.getProduct = function (id) {
+        //    self.resetState();
+        //    //manually transition
+        //    /*$state.go("editProduct",{productCode:id});*/
+        //    //TODO fake service
+        //    productService.getProducts()
+        //        .then(function (response) {
+        //            self.selectedProduct = response.data.filter(function (product) {
+        //                return product.productCode == id;
+        //            })[0];
+        //        });
+        //};
 
         self.toggleImage = function () {
             self.showImage = !self.showImage;
@@ -28,6 +42,8 @@
             self.products = [];
             //self.showImage = false;
         };
+
+        self.getProducts();
 
         return self;
     }
