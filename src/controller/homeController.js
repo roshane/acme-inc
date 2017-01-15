@@ -1,33 +1,16 @@
+/**
+ * Created by roshane on 1/15/2017.
+ */
 (function () {
+    "use strict";
 
-    var app = angular.module('acmeInc');
+    var app = angular.module("acmeInc");
+    app.controller("homeController", [homeController]);
 
-    app.controller('homeController', ['productService', homeController]);
-
-    function homeController(productService) {
+    function homeController() {
         var self = this;
 
-        self.products = [];
-        self.showImage = false;
-
-        self.fetchData = function () {
-            self.resetState();
-            console.log("fetching product data", new Date());
-            productService.getProducts()
-                .then(function (response) {
-                    self.products = response.data;
-                });
-        };
-
-        self.toggleImage = function () {
-            self.showImage = !self.showImage;
-            console.info("toggling image", self.showImage);
-        };
-
-        self.resetState = function () {
-            self.products = [];
-            //self.showImage = false;
-        };
+        return self;
     }
 
 })();

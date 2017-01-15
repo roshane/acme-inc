@@ -1,0 +1,56 @@
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <input class="form-control" type="text" ng-model="searchKey" placeholder="search..."/>
+        </div>
+        <div class="checkbox col-md-4">
+            <label>
+                <input type="checkbox" ng-click="vm.toggleImage()">
+                {{vm.showImage ? "hide":"show"}} image
+            </label>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary" ng-click="vm.fetchData()">
+                search&nbsp;<i class="glyphicon glyphicon-search"></i>
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<br>
+
+<div class="container">
+    <div class="small">
+        Search result for: <strong> {{searchKey}}</strong>
+    </div>
+    <table class="table table-condensed table-striped">
+        <thead class="bg-primary">
+        <tr>
+            <th ng-if="vm.showImage">Image</th>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Release Date</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="product in vm.products">
+            <td ng-if="vm.showImage">
+                <img style="width: 100px" ng-src="{{product.image}}"/>
+            </td>
+            <td>{{product.productName}}</td>
+            <td>{{product.productCode}}</td>
+            <td>{{product.releaseDate}}</td>
+            <td>{{product.price}}</td>
+            <td>
+                <button type="button">view</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

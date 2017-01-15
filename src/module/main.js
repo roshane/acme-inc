@@ -4,10 +4,5 @@
 (function () {
     "use strict";
 
-    var app = angular.module('acmeInc', ['angular-loading-bar', 'ngAnimate', 'serviceModule'])
-        .config(function (cfpLoadingBarProvider) {
-            cfpLoadingBarProvider.includeSpinner = true;
-        });
-
-    return app;
+    var app = angular.module('acmeInc', ['angular-loading-bar', 'ngAnimate', 'serviceModule', 'ui.router']);
 })();
