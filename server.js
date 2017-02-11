@@ -31,6 +31,19 @@ var server = new webpackDevServer(compiler, {
     }
 });
 server.listen(8080, function () {
-    console.log('server started on ', "http://locahost:8080");
+    console.log('server started on ', "http://localhost:8080");
     console.log("Ctrl + C ", "exit");
+
+    var app = server.app;
+    app.get("/api", function (req, res) {
+        console.log("API request received ", "/api");
+        var apiInfo = {
+            version: "1.0",
+            name: "Acme Inc API",
+            author: "roshane.perera@auxenta.com"
+        };
+        res.append("Access-Control-Allow-Origin","*");
+        res.json(apiInfo);
+    });
 });
+

@@ -9,7 +9,6 @@ require('angular-animate');
 require('angular-ui-router');
 require('angular-loading-bar');
 
-var angular = require('angular');
 
 require('./../node_modules/bootstrap/dist/css/bootstrap.css');
 require('./../node_modules/bootstrap/dist/js/bootstrap.js');
@@ -25,5 +24,6 @@ require('./module/mockService');
 require('./service/productService');
 require('./controller/homeController');
 require('./controller/productController');
+require('./controller/productListController');
 //define at last routes
 require('./config/route');

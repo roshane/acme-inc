@@ -26,7 +26,7 @@
     <div class="small">
         Search result for: <strong> {{searchKey}}</strong>
     </div>
-    <table class="table table-condensed table-striped">
+    <table class="table table-striped table-condensed">
         <thead class="bg-primary">
         <tr>
             <th ng-if="vm.showImage">Image</th>
@@ -38,7 +38,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="product in vm.products">
+        <tr ng-repeat="product in vm.products|filter:searchKey">
             <td ng-if="vm.showImage">
                 <img style="width: 100px" ng-src="{{product.image}}"/>
             </td>
@@ -49,7 +49,7 @@
             <td>
                 <!--<button type="button" ng-click="vm.getProduct(product.productCode)">view</button>-->
                 <!--active route-->
-                <a ui-sref="editProduct({productCode:product.productCode})" class="btn btn-default">
+                <a ui-sref="product.view({productCode:product.productCode})" class="btn btn-default">
                     view
                 </a>
             </td>
